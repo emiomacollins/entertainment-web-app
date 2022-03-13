@@ -8,6 +8,7 @@ export const Textbox = styled.input`
 	border-bottom: 1.5px solid var(--blue);
 	outline: 0;
 	transition: border-color 0.3s;
+	caret-color: var(--red);
 
 	&::placeholder {
 		opacity: 0.5;
@@ -17,4 +18,9 @@ export const Textbox = styled.input`
 	&:focus {
 		border-color: var(--light);
 	}
+
+	${(p) =>
+		p.error &&
+		` 
+        border-color: var(--red); `}
 `;
