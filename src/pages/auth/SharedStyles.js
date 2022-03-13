@@ -6,7 +6,7 @@ export const Container = styled.div`
 	gap: 6rem;
 	margin: 5rem auto;
 	width: 90%;
-	max-width: 350px;
+	max-width: 400px;
 `;
 
 export const LogoContainer = styled.div`
@@ -21,7 +21,7 @@ export const Logo = styled.img`
 export const Form = styled.form`
 	padding: 3.5rem 2.5rem;
 	background: var(--blue-dark);
-	border-radius: var(--radius);
+	border-radius: var(--radius-500);
 	display: grid;
 `;
 
