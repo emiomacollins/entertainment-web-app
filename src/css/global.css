@@ -26,7 +26,9 @@
 	--size-700: 3.2rem;
 
 	/* OTHER */
-	--radius: 0.4em;
+	--radius-300: 0.4em;
+	--radius-400: 0.8em;
+	--radius-500: 1.6em;
 }
 
 body {
