@@ -10,6 +10,7 @@ import { routes } from './constants/routes';
 import { auth } from './firebase/init';
 import Login from './pages/auth/login';
 import SignUp from './pages/auth/signup';
+import Home from './pages/home';
 import { setUser } from './redux/user/userSlice';
 
 function App() {
@@ -40,7 +41,9 @@ function App() {
 				element={
 					<Layout>
 						<Nav />
-						<Routes></Routes>
+						<Routes>
+							<Route path={routes.home} element={<Home />} />
+						</Routes>
 					</Layout>
 				}
 			/>
