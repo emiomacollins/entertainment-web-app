@@ -4,7 +4,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { tablet } from './constants/mediaQueries';
+import Nav from './components/Nav';
+import { desktop } from './constants/mediaQueries';
 import { routes } from './constants/routes';
 import { auth } from './firebase/init';
 import Login from './pages/auth/login';
@@ -34,7 +35,15 @@ function App() {
 		<Routes>
 			<Route path={routes.login} element={<Login />} />
 			<Route path={routes.signUp} element={<SignUp />} />
-			<Route path='*' element={<Layout>Layout</Layout>} />
+			<Route
+				path='*'
+				element={
+					<Layout>
+						<Nav />
+						<Routes></Routes>
+					</Layout>
+				}
+			/>
 		</Routes>
 	) : null;
 }
@@ -44,7 +53,8 @@ export default App;
 const Layout = styled.div`
 	display: grid;
 
-	@media (min-width: ${tablet}) {
+	@media (min-width: ${desktop}) {
+		min-height: 100vh;
 		grid-template-columns: auto 1fr;
 	}
 `;
