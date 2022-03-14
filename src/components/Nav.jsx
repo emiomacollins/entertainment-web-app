@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import { Link, useLocation } from 'react-router-dom';
+import styled, { css } from 'styled-components';
 import BookmarkIcon from '../assets/custom-svgs/BookmarkIcon';
 import HomeIcon from '../assets/custom-svgs/HomeIcon';
 import MoviesIcon from '../assets/custom-svgs/MoviesIcon';
@@ -9,6 +9,14 @@ import { desktop, tablet } from '../constants/mediaQueries';
 import { routes } from '../constants/routes';
 
 function Nav() {
+	const { pathname } = useLocation();
+	const links = [
+		{ route: routes.home, icon: HomeIcon },
+		{ route: routes.movies, icon: MoviesIcon },
+		{ route: routes.tvShows, icon: TvShowsIcon },
+		{ route: routes.bookmarks, icon: BookmarkIcon },
+	];
+
 	return (
 		<Container>
 			<LogoLink as={Link} to={routes.home}>
@@ -16,18 +24,16 @@ function Nav() {
 			</LogoLink>
 
 			<Links>
-				<StyledLink as={Link} to={routes.home}>
-					<Icon as={HomeIcon} />
-				</StyledLink>
-				<StyledLink as={Link} to={routes.movies}>
-					<Icon as={MoviesIcon} />
-				</StyledLink>
-				<StyledLink as={Link} to={routes.tvShows}>
-					<Icon as={TvShowsIcon} />
-				</StyledLink>
-				<StyledLink as={Link} to={routes.bookmarks}>
-					<Icon as={BookmarkIcon} />
-				</StyledLink>
+				{links.map(({ route, icon }) => (
+					<StyledLink
+						as={Link}
+						to={route}
+						active={pathname === route ? 'true' : ''}
+						key={route}
+					>
+						<Icon as={icon} />
+					</StyledLink>
+				))}
 			</Links>
 
 			<ProfilePic src='./assets/image-avatar.png' alt='' />
@@ -47,7 +53,7 @@ const Container = styled.div`
 	padding: 0 2rem;
 
 	@media (min-width: ${tablet}) {
-		margin: 2.5rem;
+		margin: var(--layout-gap) var(--layout-gap) 0 var(--layout-gap);
 		border-radius: var(--radius-400);
 	}
 
@@ -55,7 +61,7 @@ const Container = styled.div`
 		grid-template-columns: unset;
 		grid-template-rows: auto 1fr auto;
 		gap: 5rem;
-		margin-right: 0;
+		margin: var(--layout-gap) 0 var(--layout-gap) var(--layout-gap);
 		padding: 4rem 0;
 		border-radius: var(--radius-500);
 	}
@@ -88,6 +94,22 @@ const StyledLink = styled.a`
 	&:hover ${Icon} {
 		fill: var(--light);
 	}
+
+	&:focus {
+		outline: 0;
+
+		${Icon} {
+			fill: var(--light);
+		}
+	}
+
+	${(p) =>
+		p.active &&
+		css`
+			${Icon} {
+				fill: var(--light);
+			}
+		`}
 
 	@media (min-width: ${tablet}) {
 		padding-inline: 1.5rem;
