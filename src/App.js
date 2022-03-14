@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { onAuthStateChanged } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 import Nav from './components/Nav';
 import { desktop } from './constants/mediaQueries';
@@ -11,26 +11,21 @@ import { auth } from './firebase/init';
 import Login from './pages/auth/login';
 import SignUp from './pages/auth/signup';
 import Home from './pages/home';
-import { setUser } from './redux/user/userSlice';
+import { getUser, setUser } from './redux/user/userSlice';
 
 function App() {
-	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const [authInitialized, setAuthInitialized] = useState(false);
 
 	useEffect(() => {
-		onAuthStateChanged(auth, (user) => {
-			if (user) {
-				// add serializable properties only
-				const { uid, providerData: otherProps } = user;
-				dispatch(setUser({ uid, ...otherProps[0] }));
-			} else {
-				dispatch(setUser(null));
-				navigate(routes.login);
-			}
+		const unsuscribe = onAuthStateChanged(auth, (user) => {
+			dispatch(setUser(user ? { uid: user.uid } : null));
 			setAuthInitialized(true);
 		});
+		return unsuscribe;
 	}, []);
+
+	const user = useSelector(getUser);
 
 	return authInitialized ? (
 		<Routes>
@@ -39,12 +34,18 @@ function App() {
 			<Route
 				path='*'
 				element={
-					<Layout>
-						<Nav />
-						<Routes>
-							<Route path={routes.home} element={<Home />} />
-						</Routes>
-					</Layout>
+					user ? (
+						<Layout>
+							<Nav />
+							<RoutesContainer>
+								<Routes>
+									<Route path={routes.home} element={<Home />} />
+								</Routes>
+							</RoutesContainer>
+						</Layout>
+					) : (
+						<Navigate to={routes.login} />
+					)
 				}
 			/>
 		</Routes>
@@ -59,5 +60,12 @@ const Layout = styled.div`
 	@media (min-width: ${desktop}) {
 		min-height: 100vh;
 		grid-template-columns: auto 1fr;
+	}
+`;
+
+const RoutesContainer = styled.div`
+	padding: 0 2.5rem;
+	@media (min-width: ${desktop}) {
+		margin-top: 2.5rem;
 	}
 `;
