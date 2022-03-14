@@ -16,16 +16,16 @@ function Nav() {
 			</LogoLink>
 
 			<Links>
-				<StyledLink as={Link} to=''>
+				<StyledLink as={Link} to={routes.home}>
 					<Icon as={HomeIcon} />
 				</StyledLink>
-				<StyledLink as={Link} to=''>
+				<StyledLink as={Link} to={routes.movies}>
 					<Icon as={MoviesIcon} />
 				</StyledLink>
-				<StyledLink as={Link} to=''>
+				<StyledLink as={Link} to={routes.tvShows}>
 					<Icon as={TvShowsIcon} />
 				</StyledLink>
-				<StyledLink as={Link} to=''>
+				<StyledLink as={Link} to={routes.bookmarks}>
 					<Icon as={BookmarkIcon} />
 				</StyledLink>
 			</Links>
