@@ -66,3 +66,11 @@ a,
 button {
 	font: inherit;
 }
+
+input:focus,
+a:focus,
+button:focus {
+	outline-offset: 0.5rem;
+	outline-color: var(--light);
+	outline-style: dashed;
+}
