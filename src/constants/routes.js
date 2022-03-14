@@ -5,4 +5,5 @@ export const routes = {
 	movies: '/movies',
 	tvShows: '/tv-shows',
 	bookmarks: '/bookmarks',
+	search: '/search',
 };
