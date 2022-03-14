@@ -6,9 +6,14 @@ export const Button = styled.button`
 	border-radius: var(--radius-300);
 	background: var(--red);
 	color: var(--light);
-	transition: background 0.2s;
+	transition: 0.2s;
 
 	&:hover {
-		background: var(--red-dark);
+		background: var(--light);
+		color: var(--dark);
+	}
+
+	&:disabled {
+		opacity: 0.5;
 	}
 `;
