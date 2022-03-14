@@ -5,40 +5,49 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 import Nav from './components/Nav';
+import SearchBox from './components/SearchBox';
 import { desktop } from './constants/mediaQueries';
 import { routes } from './constants/routes';
 import { auth } from './firebase/init';
 import Login from './pages/auth/login';
 import SignUp from './pages/auth/signup';
 import Home from './pages/home';
+import SearchResults from './pages/search-results';
 import { getUser, setUser } from './redux/user/userSlice';
 
 function App() {
 	const dispatch = useDispatch();
+	const user = useSelector(getUser);
 	const [authInitialized, setAuthInitialized] = useState(false);
 
 	useEffect(() => {
 		const unsuscribe = onAuthStateChanged(auth, (user) => {
-			dispatch(setUser(user ? { uid: user.uid } : null));
+			dispatch(setUser(user ? { uid: user.uid } : user));
 			setAuthInitialized(true);
 		});
 		return unsuscribe;
 	}, []);
 
-	const user = useSelector(getUser);
-
+	// dont render entrie app till firebase has initialized auth
+	// to avoid redirecting to login page even when user exists
 	return authInitialized ? (
 		<Routes>
 			<Route path={routes.login} element={<Login />} />
 			<Route path={routes.signUp} element={<SignUp />} />
 			<Route
 				path='*'
+				// return a redirect to login page if user is null
 				element={
 					user ? (
 						<Layout>
 							<Nav />
 							<RoutesContainer>
+								<SearchBox />
 								<Routes>
+									<Route
+										path={routes.search}
+										element={<SearchResults />}
+									/>
 									<Route path={routes.home} element={<Home />} />
 								</Routes>
 							</RoutesContainer>
@@ -64,8 +73,12 @@ const Layout = styled.div`
 `;
 
 const RoutesContainer = styled.div`
-	padding: 0 2.5rem;
+	padding-inline: var(--layout-gap);
+	padding-bottom: var(--layout-gap);
+	display: grid;
+	align-content: flex-start;
+
 	@media (min-width: ${desktop}) {
-		margin-top: 2.5rem;
+		padding-top: var(--layout-gap);
 	}
 `;
