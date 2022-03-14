@@ -49,7 +49,7 @@ function SignUp() {
 		>
 			{(formik) => (
 				<Container>
-					<LogoContainer>
+					<LogoContainer as={Link} to={routes.home}>
 						<Logo src='./assets/logo.svg' alt='Logo' />
 					</LogoContainer>
 

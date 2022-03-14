@@ -49,24 +49,24 @@ function Login() {
 		>
 			{(formik) => (
 				<Container>
-					<LogoContainer>
-						<Logo src="./assets/logo.svg" alt="Logo" />
+					<LogoContainer as={Link} to={routes.home}>
+						<Logo src='./assets/logo.svg' alt='Logo' />
 					</LogoContainer>
 
 					<StyledForm as={Form}>
 						<Heading>Login</Heading>
 
 						<Fields>
-							<Textbox placeholder="Email" type="email" name="email" />
+							<Textbox placeholder='Email' type='email' name='email' />
 							<Textbox
-								placeholder="Password"
-								type="password"
-								name="password"
+								placeholder='Password'
+								type='password'
+								name='password'
 							/>
 							{formik.values.error && <Error>{formik.values.error}</Error>}
 						</Fields>
 
-						<Submit disabled={formik.isSubmitting} type="submit">
+						<Submit disabled={formik.isSubmitting} type='submit'>
 							Login to your account
 						</Submit>
 
