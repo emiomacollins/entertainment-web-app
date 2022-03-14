@@ -40,5 +40,5 @@ export const Center = styled.p`
 `;
 
 export const Submit = styled(Button)`
-	margin-block: 4rem 3rem;
+	margin-block: 3rem;
 `;
