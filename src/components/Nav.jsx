@@ -46,13 +46,18 @@ const Container = styled.div`
 	justify-items: center;
 	padding: 0 2rem;
 
+	@media (min-width: ${tablet}) {
+		margin: 2.5rem;
+		border-radius: var(--radius-400);
+	}
+
 	@media (min-width: ${desktop}) {
 		grid-template-columns: unset;
 		grid-template-rows: auto 1fr auto;
 		gap: 5rem;
-		margin: 2rem;
-		border-radius: var(--radius-500);
+		margin-right: 0;
 		padding: 4rem 0;
+		border-radius: var(--radius-500);
 	}
 `;
 
