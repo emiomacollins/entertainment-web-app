@@ -8,7 +8,7 @@
 }
 
 :root {
-	font-size: 62.5%;
+	font-size: 52.5%;
 
 	/* COLORS */
 	--red: #fc4747;
@@ -28,6 +28,14 @@
 	--radius-300: 0.4em;
 	--radius-400: 0.8em;
 	--radius-500: 1.4em;
+
+	--layout-gap: 2.5rem;
+}
+
+@media (min-width: 500px) {
+	:root {
+		font-size: 62.5%;
+	}
 }
 
 body {
@@ -65,6 +73,7 @@ input,
 a,
 button {
 	font: inherit;
+	color: inherit;
 }
 
 input:focus,
@@ -73,4 +82,9 @@ button:focus {
 	outline-offset: 0.5rem;
 	outline-color: var(--light);
 	outline-style: dashed;
+}
+
+input {
+	caret-color: var(--red);
+	min-width: 0;
 }
