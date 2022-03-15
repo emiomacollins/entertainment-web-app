@@ -67,16 +67,26 @@ const Layout = styled.div`
 	display: grid;
 
 	@media (min-width: ${desktop}) {
-		min-height: 100vh;
+		height: 100vh;
 		grid-template-columns: auto 1fr;
 	}
 `;
 
 const RoutesContainer = styled.div`
-	padding-inline: var(--layout-gap);
+	padding-inline: var(--layout-gap) 4rem;
 	padding-bottom: var(--layout-gap);
 	display: grid;
 	align-content: flex-start;
+	height: 100%;
+	overflow-y: auto;
+
+	&::-webkit-scrollbar {
+		width: 0.8rem;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: rgba(225, 225, 225, 0.5);
+	}
 
 	@media (min-width: ${desktop}) {
 		padding-top: var(--layout-gap);
