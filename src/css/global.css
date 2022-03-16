@@ -39,6 +39,14 @@
 	}
 }
 
+::-webkit-scrollbar {
+	width: 0.8rem;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: rgba(225, 225, 225, 0.5);
+}
+
 body {
 	font-size: var(--size-400);
 	font-family: 'Outfit', sans-serif;
