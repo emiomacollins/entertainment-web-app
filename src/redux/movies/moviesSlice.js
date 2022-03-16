@@ -9,16 +9,17 @@ const moviesSlice = createSlice({
 	name: 'movies',
 	initialState,
 	reducers: {
-		bookmark(state, { payload: title }) {
+		toggleBookmark(state, { payload: title }) {
 			state.movies = state.movies.map((movie) => {
-				if (movie.title === title) return { ...movie, isBookmarked: true };
+				if (movie.title === title)
+					return { ...movie, isBookmarked: !movie.isBookmarked };
 				return movie;
 			});
 		},
 	},
 });
 
-export const { addBookmark, removeBookmark } = moviesSlice.actions;
+export const { toggleBookmark } = moviesSlice.actions;
 
 const moviesReducer = moviesSlice.reducer;
 export default moviesReducer;
