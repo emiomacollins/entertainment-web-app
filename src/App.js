@@ -89,14 +89,6 @@ const RoutesContainer = styled.div`
 	height: 100%;
 	overflow-y: auto;
 
-	&::-webkit-scrollbar {
-		width: 0.8rem;
-	}
-
-	&::-webkit-scrollbar-thumb {
-		background-color: rgba(225, 225, 225, 0.5);
-	}
-
 	@media (min-width: ${desktop}) {
 		padding-top: var(--layout-gap);
 	}
