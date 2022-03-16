@@ -36,6 +36,7 @@ function Nav() {
 				))}
 			</Links>
 
+			{/* TODO: add sign out  */}
 			<ProfilePic src='./assets/image-avatar.png' alt='' />
 		</Container>
 	);
