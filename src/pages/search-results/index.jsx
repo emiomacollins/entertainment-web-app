@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
-import MovieCard from '../../components/MovieCard';
+import MovieCard from '../../components/Cards/MovieCard';
 import { MovieGrid } from '../../components/styled-components/MovieGrid';
 import { getMovies } from '../../redux/movies/moviesSlice';
 
