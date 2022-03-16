@@ -1,9 +1,20 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import MoviesIcon from '../assets/custom-svgs/MoviesIcon';
-import TvShowsIcon from '../assets/custom-svgs/TvShowsIcon';
+import MoviesIcon from '../../assets/custom-svgs/MoviesIcon';
+import TvShowsIcon from '../../assets/custom-svgs/TvShowsIcon';
+import { toggleBookmark } from '../../redux/movies/moviesSlice';
+import {
+	BookmarkBtn,
+	BookmarkIcon,
+	Category,
+	CategoryIcon,
+	Dot,
+	Info,
+} from './SharedStyles';
 
 function MovieCard({ movie }) {
+	const dispatch = useDispatch();
 	const {
 		title,
 		year,
@@ -17,11 +28,15 @@ function MovieCard({ movie }) {
 
 	const Icon = category === 'Movie' ? MoviesIcon : TvShowsIcon;
 
+	function handleToggleBookmark() {
+		dispatch(toggleBookmark(title));
+	}
+
 	return (
 		<Container>
 			<ThumbnailContainer>
 				<Thumbnail src={image} alt='' />
-				<BookmarkBtn>
+				<BookmarkBtn onClick={handleToggleBookmark}>
 					<BookmarkIcon
 						src='./assets/icon-bookmark-full.svg'
 						alt=''
@@ -34,11 +49,12 @@ function MovieCard({ movie }) {
 					/>
 				</BookmarkBtn>
 			</ThumbnailContainer>
+
 			<Info>
 				{year}
 				<Dot />
 				<Category>
-					<StyledIcon as={Icon} />
+					<CategoryIcon as={Icon} />
 					{category}
 				</Category>
 				<Dot />
@@ -54,32 +70,12 @@ export default MovieCard;
 const Container = styled.div`
 	display: grid;
 	gap: 1rem;
-	cursor: pointer;
 	position: relative;
 `;
 
 const ThumbnailContainer = styled.div`
 	display: flex;
 	position: relative;
-`;
-
-const BookmarkBtn = styled.button`
-	position: absolute;
-	top: 2rem;
-	right: 2rem;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border-radius: 50%;
-	background: var(--dark-transparent);
-	border: 0;
-	width: 3.5rem;
-	height: 3.5rem;
-`;
-
-const BookmarkIcon = styled.img`
-	opacity: ${(p) => (p.visible ? '1' : '0')};
-	position: ${(p) => (p.visible ? 'unset' : 'absolute')};
 `;
 
 const Thumbnail = styled.img`
@@ -89,33 +85,4 @@ const Thumbnail = styled.img`
 const Title = styled.h3`
 	font-weight: 500;
 	letter-spacing: 0.07em;
-`;
-
-const Info = styled.div`
-	opacity: 0.5;
-	display: flex;
-	align-items: center;
-	gap: 0.8rem;
-`;
-
-const Dot = styled.span`
-	width: 0.5rem;
-	height: 0.5rem;
-	border-radius: 50%;
-	background: var(--light);
-`;
-
-const Category = styled.div`
-	display: flex;
-	align-items: center;
-	gap: 0.5rem;
-
-	svg {
-		transform: scale(0.8);
-	}
-`;
-
-const StyledIcon = styled.div`
-	fill: var(--light);
-	height: auto.1rem;
 `;
