@@ -11,8 +11,11 @@ import { routes } from './constants/routes';
 import { auth } from './firebase/init';
 import Login from './pages/auth/login';
 import SignUp from './pages/auth/signup';
+import Bookmarks from './pages/bookmarks';
 import Home from './pages/home';
+import Movies from './pages/movies';
 import SearchResults from './pages/search-results';
+import TvShows from './pages/tv-shows';
 import { getUser, setUser } from './redux/user/userSlice';
 
 function App() {
@@ -49,6 +52,12 @@ function App() {
 										element={<SearchResults />}
 									/>
 									<Route path={routes.home} element={<Home />} />
+									<Route path={routes.movies} element={<Movies />} />
+									<Route path={routes.tvShows} element={<TvShows />} />
+									<Route
+										path={routes.bookmarks}
+										element={<Bookmarks />}
+									/>
 								</Routes>
 							</RoutesContainer>
 						</Layout>
