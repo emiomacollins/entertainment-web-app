@@ -1,12 +1,13 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useQuery } from 'react-query';
+import { getMovies } from '../../api/api';
 import MovieCard from '../../components/Cards/MovieCard';
 import { MovieGrid } from '../../components/styled-components/MovieGrid';
-import { getMovies } from '../../redux/movies/moviesSlice';
 
 function TvShows() {
-	const movies = useSelector(getMovies);
-	return (
+	const { data: movies } = useQuery('getMovies', getMovies);
+
+	return movies ? (
 		<MovieGrid>
 			{movies
 				.filter(({ category }) => category === 'TV Series')
@@ -14,6 +15,8 @@ function TvShows() {
 					<MovieCard key={movie.title + i} movie={movie} />
 				))}
 		</MovieGrid>
+	) : (
+		<h2>Loading...</h2>
 	);
 }
 

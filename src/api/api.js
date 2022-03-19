@@ -4,5 +4,5 @@ import { db } from '../firebase/init';
 export async function getMovies() {
 	const ref = collection(db, 'movies');
 	const snapshot = await getDocs(ref);
-	return snapshot.docs.map((doc) => doc.data());
+	return snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
 }
