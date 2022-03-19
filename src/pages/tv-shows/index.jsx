@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from 'react-query';
 import { getMovies } from '../../api/api';
-import MovieCard from '../../components/Cards/MovieCard';
+import MovieCard from '../../components/cards/MovieCard';
 import { MovieGrid } from '../../components/styled-components/MovieGrid';
 
 function TvShows() {
