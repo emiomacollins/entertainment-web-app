@@ -1,19 +1,25 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useQuery } from 'react-query';
+import { getMovies } from '../../api/api';
 import MovieCard from '../../components/Cards/MovieCard';
 import { MovieGrid } from '../../components/styled-components/MovieGrid';
-import { getMovies } from '../../redux/movies/moviesSlice';
+import { useBookmarks } from '../../hooks/useBookmark/useBookmarks';
 
 function Bookmarks() {
-	const movies = useSelector(getMovies);
-	return (
+	const { data: bookmarks } = useBookmarks();
+
+	const { data: movies } = useQuery('getMovies', getMovies);
+
+	return movies ? (
 		<MovieGrid>
 			{movies
-				.filter(({ isBookmarked }) => isBookmarked)
-				.map((movie, i) => (
-					<MovieCard key={movie.title + i} movie={movie} />
+				.filter(({ id }) => bookmarks[id])
+				.map((movie) => (
+					<MovieCard key={movie.id} movie={movie} />
 				))}
 		</MovieGrid>
+	) : (
+		<h2>Loading...</h2>
 	);
 }
 

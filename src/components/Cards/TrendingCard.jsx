@@ -1,9 +1,8 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import MoviesIcon from '../../assets/custom-svgs/MoviesIcon';
 import TvShowsIcon from '../../assets/custom-svgs/TvShowsIcon';
-import { toggleBookmark } from '../../redux/movies/moviesSlice';
+import { useBookmarks } from '../../hooks/useBookmark/useBookmarks';
 import {
 	BookmarkBtn,
 	BookmarkIcon,
@@ -14,36 +13,33 @@ import {
 } from './SharedStyles';
 
 function TrendingCard({ movie }) {
-	const dispatch = useDispatch();
 	const {
+		id,
 		title,
 		year,
 		category,
 		rating,
-		isBookmarked,
 		thumbnail: {
 			trending: { large: image },
 		},
 	} = movie;
 
+	const { handleToggleBookmark, data: bookmarks } = useBookmarks();
+
 	const Icon = category === 'Movie' ? MoviesIcon : TvShowsIcon;
 
-	function handleToggleBookmark() {
-		dispatch(toggleBookmark(title));
-	}
-
-	return (
+	return bookmarks ? (
 		<Container bg={image}>
-			<BookmarkBtn onClick={handleToggleBookmark}>
+			<BookmarkBtn onClick={() => handleToggleBookmark(id)}>
 				<BookmarkIcon
 					src='./assets/icon-bookmark-full.svg'
 					alt=''
-					visible={isBookmarked}
+					visible={bookmarks[id]}
 				/>
 				<BookmarkIcon
 					src='./assets/icon-bookmark-empty.svg'
 					alt=''
-					visible={!isBookmarked}
+					visible={!bookmarks[id]}
 				/>
 			</BookmarkBtn>
 			<Info>
@@ -58,7 +54,7 @@ function TrendingCard({ movie }) {
 			</Info>
 			<Title>{title}</Title>
 		</Container>
-	);
+	) : null;
 }
 
 export default TrendingCard;

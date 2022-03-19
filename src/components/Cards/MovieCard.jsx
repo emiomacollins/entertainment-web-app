@@ -1,9 +1,8 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import MoviesIcon from '../../assets/custom-svgs/MoviesIcon';
 import TvShowsIcon from '../../assets/custom-svgs/TvShowsIcon';
-import { toggleBookmark } from '../../redux/movies/moviesSlice';
+import { useBookmarks } from '../../hooks/useBookmark/useBookmarks';
 import {
 	BookmarkBtn,
 	BookmarkIcon,
@@ -14,38 +13,35 @@ import {
 } from './SharedStyles';
 
 function MovieCard({ movie }) {
-	const dispatch = useDispatch();
 	const {
+		id,
 		title,
 		year,
 		category,
 		rating,
-		isBookmarked,
 		thumbnail: {
 			regular: { medium: image },
 		},
 	} = movie;
 
+	const { data: bookmarks, handleToggleBookmark } = useBookmarks();
+
 	const Icon = category === 'Movie' ? MoviesIcon : TvShowsIcon;
 
-	function handleToggleBookmark() {
-		dispatch(toggleBookmark(title));
-	}
-
-	return (
+	return bookmarks ? (
 		<Container>
 			<ThumbnailContainer>
 				<Thumbnail src={image} alt='' />
-				<BookmarkBtn onClick={handleToggleBookmark}>
+				<BookmarkBtn onClick={() => handleToggleBookmark(id)}>
 					<BookmarkIcon
 						src='./assets/icon-bookmark-full.svg'
 						alt=''
-						visible={isBookmarked}
+						visible={bookmarks[id]}
 					/>
 					<BookmarkIcon
 						src='./assets/icon-bookmark-empty.svg'
 						alt=''
-						visible={!isBookmarked}
+						visible={!bookmarks[id]}
 					/>
 				</BookmarkBtn>
 			</ThumbnailContainer>
@@ -62,7 +58,7 @@ function MovieCard({ movie }) {
 			</Info>
 			<Title>{title}</Title>
 		</Container>
-	);
+	) : null;
 }
 
 export default MovieCard;
