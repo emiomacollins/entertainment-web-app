@@ -10,7 +10,7 @@ function Home() {
 	const movies = useSelector(getMovies);
 	return (
 		<Container>
-			<Heading>Trending</Heading>
+			<h2>Trending</h2>
 			<TrendingGrid>
 				{movies
 					.filter(({ isTrending }) => isTrending)
@@ -19,7 +19,7 @@ function Home() {
 					))}
 			</TrendingGrid>
 
-			<Heading>Recommended for you</Heading>
+			<h2>Recommended for you</h2>
 			<MovieGrid>
 				{movies
 					.filter(({ category }) => category === 'Movie')
@@ -36,10 +36,6 @@ export default Home;
 const Container = styled.div`
 	display: grid;
 	gap: 2rem;
-`;
-
-const Heading = styled.h2`
-	font-weight: 300;
 `;
 
 const TrendingGrid = styled.div`

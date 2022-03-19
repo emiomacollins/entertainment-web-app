@@ -26,7 +26,6 @@ export const Form = styled.form`
 `;
 
 export const Heading = styled.h1`
-	font-weight: 300;
 	margin-bottom: 3rem;
 `;
 
