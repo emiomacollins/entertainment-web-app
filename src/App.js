@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
-import Nav from './components/Nav';
+import Nav from './components/nav/Nav';
 import SearchBox from './components/SearchBox';
 import { desktop } from './constants/mediaQueries';
 import { routes } from './constants/routes';

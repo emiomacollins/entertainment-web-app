@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styled, { css } from 'styled-components';
-import BookmarkIcon from '../assets/custom-svgs/BookmarkIcon';
-import HomeIcon from '../assets/custom-svgs/HomeIcon';
-import MoviesIcon from '../assets/custom-svgs/MoviesIcon';
-import TvShowsIcon from '../assets/custom-svgs/TvShowsIcon';
-import { desktop, tablet } from '../constants/mediaQueries';
-import { routes } from '../constants/routes';
+import BookmarkIcon from '../../assets/custom-svgs/BookmarkIcon';
+import HomeIcon from '../../assets/custom-svgs/HomeIcon';
+import MoviesIcon from '../../assets/custom-svgs/MoviesIcon';
+import TvShowsIcon from '../../assets/custom-svgs/TvShowsIcon';
+import { desktop, tablet } from '../../constants/mediaQueries';
+import { routes } from '../../constants/routes';
+import Profile from './Profile';
 
 function Nav() {
 	const { pathname } = useLocation();
@@ -36,8 +37,7 @@ function Nav() {
 				))}
 			</Links>
 
-			{/* TODO: add sign out  */}
-			<ProfilePic src='./assets/image-avatar.png' alt='' />
+			<Profile />
 		</Container>
 	);
 }
@@ -124,10 +124,4 @@ const StyledLink = styled.a`
 
 const LogoLink = styled.a`
 	display: flex;
-`;
-
-const ProfilePic = styled.img`
-	height: 4rem;
-	border: 2px solid var(--light);
-	border-radius: 50%;
 `;
