@@ -28,7 +28,7 @@ function App() {
 	useEffect(() => {
 		const unsuscribe = onAuthStateChanged(auth, (user) => {
 			dispatch(setUser(user ? { uid: user.uid } : user));
-			setAuthInitialized(true);
+			!authInitialized && setAuthInitialized(true);
 			// clear cache
 			queryClient.invalidateQueries();
 		});
