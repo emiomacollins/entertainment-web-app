@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { onAuthStateChanged } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
+import { useQueryClient } from 'react-query';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
@@ -21,12 +22,15 @@ import { getUser, setUser } from './redux/user/userSlice';
 function App() {
 	const dispatch = useDispatch();
 	const user = useSelector(getUser);
+	const queryClient = useQueryClient();
 	const [authInitialized, setAuthInitialized] = useState(false);
 
 	useEffect(() => {
 		const unsuscribe = onAuthStateChanged(auth, (user) => {
 			dispatch(setUser(user ? { uid: user.uid } : user));
 			setAuthInitialized(true);
+			// clear cache
+			queryClient.invalidateQueries();
 		});
 		return unsuscribe;
 	}, []);
