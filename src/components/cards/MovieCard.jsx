@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import MoviesIcon from '../../assets/custom-svgs/MoviesIcon';
 import TvShowsIcon from '../../assets/custom-svgs/TvShowsIcon';
 import { useBookmarks } from '../../hooks/useBookmark/useBookmarks';
+import FadeInImage from '../FadeInImage';
 import {
 	BookmarkBtn,
 	BookmarkIcon,
@@ -67,6 +68,8 @@ const Container = styled.div`
 	display: grid;
 	gap: 1rem;
 	position: relative;
+	min-width: 25rem;
+	min-height: 20rem;
 `;
 
 const ThumbnailContainer = styled.div`
@@ -74,7 +77,7 @@ const ThumbnailContainer = styled.div`
 	position: relative;
 `;
 
-const Thumbnail = styled.img`
+const Thumbnail = styled(FadeInImage)`
 	border-radius: var(--radius-400);
 `;
 
