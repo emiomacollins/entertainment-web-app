@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { desktop } from '../constants/mediaQueries';
 import { routes } from '../constants/routes';
 
 function SearchBox() {
@@ -38,10 +37,6 @@ const Container = styled.form`
 	align-items: center;
 	gap: 2rem;
 	margin-block: var(--layout-gap);
-
-	@media (min-width: ${desktop}) {
-		margin-top: 0;
-	}
 `;
 
 const Icon = styled.img`
