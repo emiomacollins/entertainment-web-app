@@ -1,13 +1,9 @@
-import { useQuery } from 'react-query';
-import { getMovies } from '../../api/api';
+import { useMovies } from '../../hooks/useMovies/useMovies';
 import Render from './Render';
 
 function SearchResults() {
-	const { data } = useQuery('getMovies', getMovies, {
-		refetchOnMount: false,
-		refetchOnWindowFocus: false,
-	});
-	return data ? <Render movies={data} /> : <h2>Searching...</h2>;
+	const { data: movies } = useMovies();
+	return movies ? <Render movies={movies} /> : <h2>Searching...</h2>;
 }
 
 export default SearchResults;

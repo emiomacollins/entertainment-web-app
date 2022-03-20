@@ -1,13 +1,12 @@
 import React from 'react';
-import { useQuery } from 'react-query';
 import styled from 'styled-components';
-import { getMovies } from '../../api/api';
 import MovieCard from '../../components/cards/MovieCard';
 import TrendingCard from '../../components/cards/TrendingCard';
 import { MovieGrid } from '../../components/styled-components/MovieGrid';
+import { useMovies } from '../../hooks/useMovies/useMovies';
 
 function Home() {
-	const { data: movies } = useQuery('getMovies', getMovies);
+	const { data: movies } = useMovies();
 
 	return movies ? (
 		<Container>
