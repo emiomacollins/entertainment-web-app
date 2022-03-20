@@ -31,6 +31,9 @@ function App() {
 		return unsuscribe;
 	}, []);
 
+	// TODO: add redirects file
+	// TODO: add click away minimize functionality to popups
+
 	// dont render entrie app till firebase has initialized auth
 	// to avoid redirecting to login page even when user exists
 	return authInitialized ? (

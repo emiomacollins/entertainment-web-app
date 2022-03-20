@@ -1,6 +1,7 @@
 import { signOut } from 'firebase/auth';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { desktop } from '../../constants/mediaQueries';
 import { auth } from '../../firebase/init';
 
 function Profile() {
@@ -49,13 +50,19 @@ const Options = styled.div`
 	padding: 2rem;
 	background: var(--blue);
 	position: absolute;
-	bottom: 0;
-	left: calc(100% + 2rem);
+	top: calc(100% + 1rem);
+	right: 0;
 	border-radius: var(--radius-400);
 	z-index: 2;
 	opacity: ${(p) => (p.expanded ? '1' : '0')};
 	transition: 0.1s;
 	min-width: max-content;
+
+	@media (min-width: ${desktop}) {
+		top: unset;
+		bottom: 0;
+		left: calc(100% + 2rem);
+	}
 `;
 
 const SignOut = styled(Button)`
