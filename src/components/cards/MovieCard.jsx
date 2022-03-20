@@ -24,9 +24,7 @@ function MovieCard({ movie }) {
 			regular: { medium: image },
 		},
 	} = movie;
-
 	const { data: bookmarks, handleToggleBookmark } = useBookmarks();
-
 	const Icon = category === 'Movie' ? MoviesIcon : TvShowsIcon;
 
 	return bookmarks ? (

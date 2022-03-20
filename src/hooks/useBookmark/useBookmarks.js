@@ -6,8 +6,9 @@ export function useBookmarks() {
 	const queryClient = useQueryClient();
 
 	const { data, isLoading, error } = useQuery('getBookmarks', getBookmarks, {
-		refetchOnMount: false,
 		refetchOnWindowFocus: false,
+		//this is bad for clearing cache
+		// refetchOnMount: false,
 	});
 
 	async function handleToggleBookmark(id) {
