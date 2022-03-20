@@ -85,7 +85,7 @@ const Layout = styled.div`
 `;
 
 const RoutesContainer = styled.div`
-	padding-inline: var(--layout-gap) 4rem;
+	padding-inline: var(--layout-gap);
 	padding-bottom: var(--layout-gap);
 	display: grid;
 	align-content: flex-start;
@@ -93,6 +93,7 @@ const RoutesContainer = styled.div`
 	overflow-y: auto;
 
 	@media (min-width: ${desktop}) {
+		padding-inline: var(--layout-gap) 4rem;
 		padding-top: var(--layout-gap);
 	}
 `;
