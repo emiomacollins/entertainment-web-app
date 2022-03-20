@@ -1,22 +1,19 @@
 import { signOut } from 'firebase/auth';
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { desktop } from '../../constants/mediaQueries';
 import { auth } from '../../firebase/init';
+import { useDropdown } from '../../hooks/useDropdown';
 
 function Profile() {
-	const [expanded, setExpanded] = useState(false);
-
-	function handleToggleExpanded() {
-		setExpanded(!expanded);
-	}
+	const { ref, expanded, handleToggleExpanded } = useDropdown();
 
 	async function handleSignOut() {
 		signOut(auth);
 	}
 
 	return (
-		<Container>
+		<Container ref={ref}>
 			<Button onClick={handleToggleExpanded}>
 				<ProfilePic src='./assets/image-avatar.png' alt='' />
 			</Button>

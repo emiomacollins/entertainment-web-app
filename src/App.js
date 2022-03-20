@@ -31,7 +31,6 @@ function App() {
 		return unsuscribe;
 	}, []);
 
-	// TODO: add redirects file
 	// TODO: add click away minimize functionality to popups
 
 	// dont render entrie app till firebase has initialized auth
