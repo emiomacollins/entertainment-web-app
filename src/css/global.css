@@ -33,7 +33,7 @@
 	--layout-gap: 2.5rem;
 }
 
-@media (min-width: 500px) {
+@media (min-width: 400px) {
 	:root {
 		font-size: 62.5%;
 	}
