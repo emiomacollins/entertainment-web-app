@@ -36,7 +36,7 @@ const Container = styled.form`
 	grid-template-columns: auto 1fr;
 	align-items: center;
 	gap: 2rem;
-	margin-block: var(--layout-gap);
+	margin-block: 1.5rem;
 `;
 
 const Icon = styled.img`
