@@ -4,11 +4,9 @@ import { toggleBookmark } from './api';
 
 export function useBookmarks() {
 	const queryClient = useQueryClient();
-
 	const { data, isLoading, error } = useQuery('getBookmarks', getBookmarks, {
-		refetchOnWindowFocus: false,
-		//this is bad for clearing cache
-		// refetchOnMount: false,
+		// don't refetch onMount, onWindowFocus, etc... unless query is invalidated
+		staleTime: Infinity,
 	});
 
 	const { mutate: handleToggleBookmark } = useMutation(
