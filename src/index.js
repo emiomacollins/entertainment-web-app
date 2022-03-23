@@ -8,7 +8,13 @@ import App from './App';
 import './css/global.css';
 import { store } from './redux/store';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+	defaultOptions: {
+		queries: {
+			refetchOnWindowFocus: false,
+		},
+	},
+});
 
 ReactDOM.render(
 	<React.StrictMode>
