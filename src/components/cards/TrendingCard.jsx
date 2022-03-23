@@ -2,19 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import MoviesIcon from '../../assets/custom-svgs/MoviesIcon';
 import TvShowsIcon from '../../assets/custom-svgs/TvShowsIcon';
-import { useBookmarks } from '../../hooks/useBookmark/useBookmarks';
-import {
-	BookmarkBtn,
-	BookmarkIcon,
-	Category,
-	CategoryIcon,
-	Dot,
-	Info,
-} from './SharedStyles';
+import BookmarkBtn from './BookmarkBtn';
+import { Category, CategoryIcon, Dot, Info } from './SharedStyles';
 
 function TrendingCard({ movie }) {
 	const {
-		id,
 		title,
 		year,
 		category,
@@ -23,25 +15,11 @@ function TrendingCard({ movie }) {
 			trending: { large: image },
 		},
 	} = movie;
-
-	const { handleToggleBookmark, data: bookmarks } = useBookmarks();
-
 	const Icon = category === 'Movie' ? MoviesIcon : TvShowsIcon;
 
-	return bookmarks ? (
+	return (
 		<Container bg={image}>
-			<BookmarkBtn onClick={() => handleToggleBookmark(id)}>
-				<BookmarkIcon
-					src='./assets/icon-bookmark-full.svg'
-					alt=''
-					visible={bookmarks[id]}
-				/>
-				<BookmarkIcon
-					src='./assets/icon-bookmark-empty.svg'
-					alt=''
-					visible={!bookmarks[id]}
-				/>
-			</BookmarkBtn>
+			<BookmarkBtn movie={movie} />
 			<Info>
 				{year}
 				<Dot />
@@ -54,7 +32,7 @@ function TrendingCard({ movie }) {
 			</Info>
 			<Title>{title}</Title>
 		</Container>
-	) : null;
+	);
 }
 
 export default TrendingCard;
