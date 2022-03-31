@@ -1,6 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from 'react-query';
-import { getBookmarks } from '../../pages/bookmarks/api';
-import { toggleBookmark } from './api';
+import { getBookmarks, toggleBookmark } from './api';
 
 export function useBookmarks() {
 	const queryClient = useQueryClient();
