@@ -36,7 +36,7 @@ export const Container = styled.button`
 	border: 0;
 	width: 3.5rem;
 	height: 3.5rem;
-	transition: all.2s;
+	transition: 0.2s;
 
 	&:hover {
 		transform: scale(1.1);

@@ -5,7 +5,7 @@ import { toggleBookmark } from './api';
 export function useBookmarks() {
 	const queryClient = useQueryClient();
 	const { data, isLoading, error } = useQuery('getBookmarks', getBookmarks, {
-		// don't refetch onMount, onWindowFocus, etc... unless query is invalidated
+		// don't refetch if cache exists (forever)
 		staleTime: Infinity,
 	});
 
